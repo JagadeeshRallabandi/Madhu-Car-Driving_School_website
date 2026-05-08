@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madhu Car Driving School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+Telugu:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #1d3557;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --whatsapp-green: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Noto Sans Telugu', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header & Language Toggle */
+        header {
+            background-color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .lang-toggle {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .lang-toggle:hover {
+            background-color: #457b9d;
+        }
+
+        /* Hero / Poster Section */
+        .hero {
+            background: linear-gradient(rgba(29, 53, 87, 0.9), rgba(29, 53, 87, 0.9)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #a8dadc;
+        }
+
+        .course-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .course-card h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .car-pics {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .car-pics img {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid white;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+        }
+
+        /* Container for sections */
+        .section-container {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Safety Rules */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .rule-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .rule-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .rule-card h4 {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        /* Location Section */
+        .location-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .location-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .location-details h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .location-details p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .location-details i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        .map-container {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .course-card h3 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo lang" data-en="Madhu Driving School" data-te="మధు డ్రైవింగ్ స్కూల్">Madhu Driving School</div>
+        <button class="lang-toggle" onclick="toggleLanguage()">
+            <i class="fa-solid fa-language"></i> <span id="langBtnText">తెలుగు</span>
+        </button>
+    </header>
+
+    <section class="hero">
+        <h1 class="lang" data-en="Madhu Car Driving School" data-te="మధు కార్ డ్రైవింగ్ స్కూల్">Madhu Car Driving School</h1>
+        
+        <h2 class="lang" data-en="Teaching car driving in 30 days while following road safety." data-te="30 రోజులలో కార్ ని రోడ్ సేఫ్టీ పాటిస్తూ నేర్పించడం.">Teaching car driving in 30 days while following road safety.</h2>
+
+        <div class="course-card">
+            <h3 class="lang" data-en="30 Days Course - ₹6000" data-te="30 రోజుల కోర్సు - ₹6000">30 Days Course - ₹6000</h3>
+            <p style="margin-bottom: 15px; font-size: 1.2rem;" class="lang" data-en="Vehicle: Maruti Suzuki Swift" data-te="వాహనం: మారుతీ సుజుకి స్విఫ్ట్">Vehicle: Maruti Suzuki Swift</p>
+            
+            <div class="car-pics">
+                <img src="https://images.91wheels.com/news/wp-content/uploads/2024/05/91W-Featured-Image-2024-05-09T091846.098.png?width=640&&q=80" class="car-thumb" alt="Swift Front">
+                <img src="https://marketplace-cdn.cars24.com/visio/prod/32109699176/mainimage/FrontRightSide-Transparent/shadowBackground/1775719005205ZOFOD3.webp?width=3840&format=auto&quality=75&pad=80%2C0%2C60&trim-color=auto" class="car-thumb" alt="Swift Side">
+            </div>
+
+            <p style="margin-bottom: 20px;" class="lang" data-en="Opposite Cure Hospital" data-te="క్యూర్ హాస్పిటల్ ఎదురుగా">Opposite Cure Hospital</p>
+
+            <a href="tel:+919848907545" class="contact-btn">
+                <i class="fa-solid fa-phone-volume"></i> 9848907545
+            </a>
+        </div>
+    </section>
+
+    <section class="section-container">
+        <h2 class="section-title lang" data-en="Road Safety Rules" data-te="రోడ్డు భద్రతా నియమాలు">Road Safety Rules</h2>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h4 class="lang" data-en="Always wear a seatbelt" data-te="ఎల్లప్పుడూ సీటు బెల్టు ధరించండి">Always wear a seatbelt</h4>
+            </div>
+            <div class="rule-card">
+                <i class="fa-solid fa-gauge-high"></i>
+                <h4 class="lang" data-en="Follow speed limits strictly" data-te="వేగ పరిమితులను ఖచ్చితంగా పాటించండి">Follow speed limits strictly</h4>
+            </div>
+            <div class="rule-card">
+                <i class="fa-solid fa-wine-glass"></i>
+                <h4 class="lang" data-en="Do not drink and drive" data-te="మద్యం సేవించి వాహనం నడపకండి">Do not drink and drive</h4>
+            </div>
+            <div class="rule-card">
+                <i class="fa-solid fa-traffic-light"></i>
+                <h4 class="lang" data-en="Obey traffic signals" data-te="ట్రాఫిక్ సిగ్నల్స్ పాటించండి">Obey traffic signals</h4>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" style="background-color: #f1f3f5; max-width: 100%;">
+        <h2 class="section-title lang" data-en="Our Location" data-te="మా చిరునామా">Our Location</h2>
+        <div class="section-container" style="padding-top: 0;">
+            <div class="location-wrapper">
+                <div class="location-details">
+                    <h3 class="lang" data-en="Visit Our Office" data-te="మా కార్యాలయాన్ని సందర్శించండి">Visit Our Office</h3>
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span class="lang" data-en="Door No 11-1-80, Opposite Arka Multi Speciality Hospital, Nst Road, Balaji Nagar, Khammam-507001, Telangana" data-te="డోర్ నెం 11-1-80, అర్క మల్టీ స్పెషాలిటీ హాస్పిటల్ ఎదురుగా, ఎన్ఎస్టి రోడ్, బాలాజీ నగర్, ఖమ్మం-507001, తెలంగాణ">Door No 11-1-80, Opposite Arka Multi Speciality Hospital, Nst Road, Balaji Nagar, Khammam-507001, Telangana</span>
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="tel:+919848907545" style="color: var(--text-color); text-decoration: none; font-weight: bold;">9848907545</a>
+                    </p>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Arka+Multi+Speciality+Hospital,+NST+Road,+Balaji+Nagar,+Khammam,+Telangana&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/919848907545" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        let currentLang = 'en'; // Default language is English
+
+        function toggleLanguage() {
+            const elements = document.querySelectorAll('.lang');
+            const btnText = document.getElementById('langBtnText');
+
+            if (currentLang === 'en') {
+                // Switch to Telugu
+                elements.forEach(el => {
+                    el.innerText = el.getAttribute('data-te');
+                });
+                btnText.innerText = 'English';
+                currentLang = 'te';
+            } else {
+                // Switch to English
+                elements.forEach(el => {
+                    el.innerText = el.getAttribute('data-en');
+                });
+                btnText.innerText = 'తెలుగు';
+                currentLang = 'en';
+            }
+        }
+    </script>
+</body>
+</html>
