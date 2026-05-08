@@ -19,6 +19,10 @@
             --whatsapp-green: #25D366;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -45,7 +49,6 @@
             z-index: 1000;
         }
 
-        /* Logo Container Styles */
         .brand-logo {
             display: flex;
             align-items: center;
@@ -131,6 +134,19 @@
             border: 2px solid white;
         }
 
+        .poster-location-link {
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            margin-bottom: 15px;
+            transition: transform 0.2s;
+        }
+
+        .poster-location-link:hover {
+            transform: scale(1.05);
+            color: #a8dadc;
+        }
+
         .contact-btn {
             display: inline-flex;
             align-items: center;
@@ -150,7 +166,7 @@
             box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
         }
 
-        /* Container for sections */
+        /* Sections */
         .section-container {
             padding: 60px 5%;
             max-width: 1200px;
@@ -177,7 +193,6 @@
             border-radius: 2px;
         }
 
-        /* Safety Rules */
         .rules-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -192,7 +207,7 @@
             text-align: center;
             transition: transform 0.3s;
         }
-
+        
         .rule-card:hover {
             transform: translateY(-5px);
         }
@@ -205,10 +220,9 @@
 
         .rule-card h4 {
             color: var(--secondary-color);
-            font-size: 1.1rem;
         }
 
-        /* Location Section */
+        /* Location Wrapper */
         .location-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -222,21 +236,6 @@
         .location-details {
             flex: 1;
             min-width: 300px;
-        }
-
-        .location-details h3 {
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-
-        .location-details p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-
-        .location-details i {
-            color: var(--primary-color);
-            margin-right: 10px;
         }
 
         .map-container {
@@ -253,7 +252,7 @@
             border: none;
         }
 
-        /* Floating WhatsApp Button */
+        /* Floating WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -272,17 +271,14 @@
             text-decoration: none;
             transition: transform 0.3s;
         }
-
+        
         .whatsapp-float:hover {
             transform: scale(1.1);
             color: white;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
-            .hero h2 { font-size: 1.2rem; }
-            .course-card h3 { font-size: 1.5rem; }
             .logo-text { font-size: 1.1rem; }
         }
     </style>
@@ -302,7 +298,6 @@
 
     <section class="hero">
         <h1 class="lang" data-en="Madhu Car Driving School" data-te="మధు కార్ డ్రైవింగ్ స్కూల్">Madhu Car Driving School</h1>
-        
         <h2 class="lang" data-en="Teaching car driving in 30 days while following road safety." data-te="30 రోజులలో కార్ ని రోడ్ సేఫ్టీ పాటిస్తూ నేర్పించడం.">Teaching car driving in 30 days while following road safety.</h2>
 
         <div class="course-card">
@@ -310,11 +305,16 @@
             <p style="margin-bottom: 15px; font-size: 1.2rem;" class="lang" data-en="Vehicle: Maruti Suzuki Swift" data-te="వాహనం: మారుతీ సుజుకి స్విఫ్ట్">Vehicle: Maruti Suzuki Swift</p>
             
             <div class="car-pics">
-                <img src="https://images.91wheels.com/news/wp-content/uploads/2024/05/91W-Featured-Image-2024-05-09T091846.098.png?width=640&&q=80" class="car-thumb" alt="Swift Front">
-                <img src="https://marketplace-cdn.cars24.com/visio/prod/32109699176/mainimage/FrontRightSide-Transparent/shadowBackground/1775719005205ZOFOD3.webp?width=3840&format=auto&quality=75&pad=80%2C0%2C60&trim-color=auto" class="car-thumb" alt="Swift Side">
+                <img src="https://images.91wheels.com/news/wp-content/uploads/2024/05/91W-Featured-Image-2024-05-09T091846.098.png?width=640&&q=80" alt="Swift Front">
+                <img src="https://marketplace-cdn.cars24.com/visio/prod/32109699176/mainimage/FrontRightSide-Transparent/shadowBackground/1775719005205ZOFOD3.webp?width=3840&format=auto&quality=75&pad=80%2C0%2C60&trim-color=auto" alt="Swift Side">
             </div>
 
-            <p style="margin-bottom: 15px;" class="lang" data-en="Opposite Arka Hospital, NST Road, Khammam" data-te="అర్క హాస్పిటల్ ఎదురుగా, ఎన్ఎస్టి రోడ్, ఖమ్మం">Opposite Arka Hospital, NST Road, Khammam</p>
+            <a href="#map-section" class="poster-location-link">
+                <p>
+                    <i class="fa-solid fa-location-dot" style="color: var(--primary-color); margin-right: 8px;"></i>
+                    <span class="lang" data-en="Opposite Arka Hospital, NST Road, Khammam" data-te="అర్క హాస్పిటల్ ఎదురుగా, ఎన్ఎస్టి రోడ్, ఖమ్మం">Opposite Arka Hospital, NST Road, Khammam</span>
+                </p>
+            </a>
 
             <div style="margin-bottom: 25px; font-weight: 600; font-size: 1.1rem;">
                 <i class="fa-solid fa-user-tie" style="color: #a8dadc; margin-right: 5px;"></i>
@@ -331,92 +331,52 @@
     <section class="section-container">
         <h2 class="section-title lang" data-en="Road Safety Rules" data-te="రోడ్డు భద్రతా నియమాలు">Road Safety Rules</h2>
         <div class="rules-grid">
-            <div class="rule-card">
-                <i class="fa-solid fa-user-shield"></i>
-                <h4 class="lang" data-en="Always wear a seatbelt" data-te="ఎల్లప్పుడూ సీటు బెల్టు ధరించండి">Always wear a seatbelt</h4>
-            </div>
-            <div class="rule-card">
-                <i class="fa-solid fa-gauge-high"></i>
-                <h4 class="lang" data-en="Follow speed limits strictly" data-te="వేగ పరిమితులను ఖచ్చితంగా పాటించండి">Follow speed limits strictly</h4>
-            </div>
-            <div class="rule-card">
-                <i class="fa-solid fa-wine-glass"></i>
-                <h4 class="lang" data-en="Do not drink and drive" data-te="మద్యం సేవించి వాహనం నడపకండి">Do not drink and drive</h4>
-            </div>
-            <div class="rule-card">
-                <i class="fa-solid fa-traffic-light"></i>
-                <h4 class="lang" data-en="Obey traffic signals" data-te="ట్రాఫిక్ సిగ్నల్స్ పాటించండి">Obey traffic signals</h4>
-            </div>
-            <div class="rule-card">
-                <i class="fa-solid fa-phone-slash"></i>
-                <h4 class="lang" data-en="No mobile phones while driving" data-te="డ్రైవింగ్ చేస్తున్నప్పుడు మొబైల్ వాడకండి">No mobile phones while driving</h4>
-            </div>
-            <div class="rule-card">
-                <i class="fa-solid fa-car-rear"></i>
-                <h4 class="lang" data-en="Maintain a safe distance" data-te="సురక్షితమైన దూరం పాటించండి">Maintain a safe distance</h4>
-            </div>
+            <div class="rule-card"><i class="fa-solid fa-user-shield"></i><h4 class="lang" data-en="Always wear a seatbelt" data-te="ఎల్లప్పుడూ సీటు బెల్టు ధరించండి">Always wear a seatbelt</h4></div>
+            <div class="rule-card"><i class="fa-solid fa-gauge-high"></i><h4 class="lang" data-en="Follow speed limits strictly" data-te="వేగ పరిమితులను ఖచ్చితంగా పాటించండి">Follow speed limits strictly</h4></div>
+            <div class="rule-card"><i class="fa-solid fa-wine-glass"></i><h4 class="lang" data-en="Do not drink and drive" data-te="మద్యం సేవించి వాహనం నడపకండి">Do not drink and drive</h4></div>
+            <div class="rule-card"><i class="fa-solid fa-traffic-light"></i><h4 class="lang" data-en="Obey traffic signals" data-te="ట్రాఫిక్ సిగ్నల్స్ పాటించండి">Obey traffic signals</h4></div>
+            <div class="rule-card"><i class="fa-solid fa-phone-slash"></i><h4 class="lang" data-en="No mobile phones while driving" data-te="డ్రైవింగ్ చేస్తున్నప్పుడు మొబైల్ వాడకండి">No mobile phones while driving</h4></div>
+            <div class="rule-card"><i class="fa-solid fa-car-rear"></i><h4 class="lang" data-en="Maintain a safe distance" data-te="సురక్షితమైన దూరం పాటించండి">Maintain a safe distance</h4></div>
         </div>
     </section>
 
-    <section class="section-container" style="background-color: #f1f3f5; max-width: 100%;">
+    <section id="map-section" class="section-container" style="background-color: #f1f3f5; max-width: 100%;">
         <h2 class="section-title lang" data-en="Our Location" data-te="మా చిరునామా">Our Location</h2>
         <div class="section-container" style="padding-top: 0;">
             <div class="location-wrapper">
                 <div class="location-details">
                     <h3 class="lang" data-en="Visit Our Office" data-te="మా కార్యాలయాన్ని సందర్శించండి">Visit Our Office</h3>
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span class="lang" data-en="Door No 11-1-80, Opposite Arka Multi Speciality Hospital, Nst Road, Balaji Nagar, Khammam-507001, Telangana" data-te="డోర్ నెం 11-1-80, అర్క మల్టీ స్పెషాలిటీ హాస్పిటల్ ఎదురుగా, ఎన్ఎస్టి రోడ్, బాలాజీ నగర్, ఖమ్మం-507001, తెలంగాణ">Door No 11-1-80, Opposite Arka Multi Speciality Hospital, Nst Road, Balaji Nagar, Khammam-507001, Telangana</span>
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-phone"></i>
-                        <a href="tel:+919848907545" style="color: var(--text-color); text-decoration: none; font-weight: bold;">9848907545</a>
-                    </p>
+                    <p><i class="fa-solid fa-location-dot" style="color:var(--primary-color); margin-right: 8px;"></i><span class="lang" data-en="Door No 11-1-80, Opposite Arka Multi Speciality Hospital, Nst Road, Balaji Nagar, Khammam-507001, Telangana" data-te="డోర్ నెం 11-1-80, అర్క మల్టీ స్పెషాలిటీ హాస్పిటల్ ఎదురుగా, ఎన్ఎస్టి రోడ్, బాలాజీ నగర్, ఖమ్మం-507001, తెలంగాణ">Door No 11-1-80, Opposite Arka Multi Speciality Hospital, Nst Road, Balaji Nagar, Khammam-507001, Telangana</span></p>
+                    <p><i class="fa-solid fa-phone" style="color:var(--primary-color); margin-right: 8px;"></i><a href="tel:+919848907545" style="color: var(--text-color); text-decoration: none; font-weight: bold;">9848907545</a></p>
                 </div>
                 <div class="map-container">
-                    <iframe 
-                        src="https://maps.google.com/maps?q=Arka+Multi+Speciality+Hospital,+NST+Road,+Balaji+Nagar,+Khammam,+Telangana&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <iframe src="https://maps.google.com/maps?q=Arka+Multi+Speciality+Hospital,+NST+Road,+Balaji+Nagar,+Khammam,+Telangana&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/919848907545" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/919848907545" class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <script>
-        // Language Toggle Logic
         let currentLang = 'en'; 
-
         function toggleLanguage() {
             const elements = document.querySelectorAll('.lang');
             const btnText = document.getElementById('langBtnText');
-
             if (currentLang === 'en') {
-                elements.forEach(el => {
-                    el.innerText = el.getAttribute('data-te');
-                });
+                elements.forEach(el => el.innerText = el.getAttribute('data-te'));
                 btnText.innerText = 'English';
                 currentLang = 'te';
             } else {
-                elements.forEach(el => {
-                    el.innerText = el.getAttribute('data-en');
-                });
+                elements.forEach(el => el.innerText = el.getAttribute('data-en'));
                 btnText.innerText = 'తెలుగు';
                 currentLang = 'en';
             }
         }
-
-        // Dynamic Experience Calculation
         document.addEventListener("DOMContentLoaded", function() {
-            const startYear = 2000;
-            const currentYear = new Date().getFullYear();
-            const experienceYears = currentYear - startYear;
+            const experienceYears = new Date().getFullYear() - 2000;
             document.getElementById('exp-years').innerText = experienceYears;
         });
     </script>
