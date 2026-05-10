@@ -39,6 +39,9 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures footer stays at bottom */
         }
 
         /* Header & Language Toggle */
@@ -495,6 +498,32 @@
             border: none;
         }
 
+        /* Footer Styles */
+        .site-footer {
+            background-color: var(--secondary-color);
+            color: #ccc;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: auto; /* Pushes footer to bottom */
+            font-size: 0.95rem;
+        }
+
+        .site-footer p {
+            margin-bottom: 5px;
+        }
+
+        .dev-link {
+            color: var(--accent-yellow);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .dev-link:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
         /* Floating WhatsApp */
         .whatsapp-float {
             position: fixed;
@@ -526,6 +555,7 @@
             .gallery-item img { height: 200px; }
             .close-lightbox { right: 15px; }
             .btn-group { flex-direction: column; align-items: center; }
+            .whatsapp-float { bottom: 80px; } /* Adjusts so it doesn't cover footer on mobile */
         }
     </style>
 </head>
@@ -744,6 +774,16 @@
         </div>
     </section>
 
+    <footer class="site-footer">
+        <p>
+            <span class="lang" data-en="&copy; <span id='current-year'></span> Madhu Car Driving School. All Rights Reserved." data-te="&copy; <span id='current-year-te'></span> మధు కార్ డ్రైవింగ్ స్కూల్. సర్వ హక్కులు ప్రత్యేకించబడినవి.">&copy; <span class="year-placeholder"></span> Madhu Car Driving School. All Rights Reserved.</span>
+        </p>
+        <p style="margin-top: 10px;">
+            <span class="lang" data-en="Developed by" data-te="అభివృద్ధి చేసినవారు:">Developed by</span> 
+            <a href="https://jagadeeshrportfolio.vercel.app/" target="_blank" rel="noopener noreferrer" class="dev-link">Jagadeesh Rallabandi</a>
+        </p>
+    </footer>
+
     <div id="imageLightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close-lightbox">×</span>
         <img class="lightbox-content" id="expandedImg">
@@ -761,19 +801,31 @@
             const elements = document.querySelectorAll('.lang');
             const btnText = document.getElementById('langBtnText');
             if (currentLang === 'en') {
-                elements.forEach(el => el.innerText = el.getAttribute('data-te'));
+                elements.forEach(el => el.innerHTML = el.getAttribute('data-te'));
                 btnText.innerText = 'English';
                 currentLang = 'te';
+                updateDynamicValues(); // Re-insert the dynamic year after translation
             } else {
-                elements.forEach(el => el.innerText = el.getAttribute('data-en'));
+                elements.forEach(el => el.innerHTML = el.getAttribute('data-en'));
                 btnText.innerText = 'తెలుగు';
                 currentLang = 'en';
+                updateDynamicValues(); // Re-insert the dynamic year after translation
             }
         }
         
+        function updateDynamicValues() {
+            const currentYear = new Date().getFullYear();
+            const yearPlaceholders = document.querySelectorAll('.year-placeholder, #current-year, #current-year-te');
+            yearPlaceholders.forEach(el => el.innerText = currentYear);
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
+            // Set Experience Years
             const experienceYears = new Date().getFullYear() - 2000;
             document.getElementById('exp-years').innerText = experienceYears;
+            
+            // Set Footer Year
+            updateDynamicValues();
         });
 
         var swiper = new Swiper(".mySwiper", {
