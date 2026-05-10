@@ -20,7 +20,8 @@
             --text-color: #333;
             --whatsapp-green: #25D366;
             --card-bg: #ffffff;
-            --accent-yellow: #fbbc05; /* Yellow for arrows and badges */
+            --accent-yellow: #fbbc05;
+            --insta-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
         html {
@@ -123,7 +124,7 @@
             margin-bottom: 15px;
         }
 
-        /* Instructor Photo Styles */
+        /* Instructor & Badge Styles */
         .instructor-photo {
             width: 150px;
             height: 150px;
@@ -181,6 +182,14 @@
             color: #a8dadc;
         }
 
+        /* Call to Action Buttons */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
         .contact-btn {
             display: inline-flex;
             align-items: center;
@@ -198,6 +207,25 @@
         .contact-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+        }
+
+        .insta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--insta-gradient);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .insta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(220, 39, 67, 0.4);
         }
 
         /* Sections */
@@ -336,6 +364,41 @@
             line-height: 1.4;
         }
 
+        /* Dedicated Instagram Banner */
+        .insta-banner {
+            background: var(--insta-gradient);
+            border-radius: 20px;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(220, 39, 67, 0.3);
+            max-width: 900px;
+            margin: 40px auto;
+            transition: transform 0.3s;
+        }
+
+        .insta-banner:hover {
+            transform: translateY(-5px);
+        }
+
+        .insta-banner-btn {
+            display: inline-block;
+            background: white;
+            color: #dc2743;
+            padding: 12px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .insta-banner-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
         /* Lightbox Styles */
         .lightbox {
             display: none; 
@@ -462,6 +525,7 @@
             .logo-text { font-size: 1.1rem; }
             .gallery-item img { height: 200px; }
             .close-lightbox { right: 15px; }
+            .btn-group { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -514,9 +578,14 @@
             </div>
             <br>
 
-            <a href="tel:+919848907545" class="contact-btn">
-                <i class="fa-solid fa-phone-volume"></i> 9848907545
-            </a>
+            <div class="btn-group">
+                <a href="tel:+919848907545" class="contact-btn">
+                    <i class="fa-solid fa-phone-volume"></i> 9848907545
+                </a>
+                <a href="https://www.instagram.com/madhucardrivingschool_official?utm_source=qr&igsh=NWFnZWp6NW1yMHMy" target="_blank" class="insta-btn">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+            </div>
         </div>
     </section>
 
@@ -645,6 +714,17 @@
             <div class="rule-card"><i class="fa-solid fa-traffic-light"></i><h4 class="lang" data-en="Obey traffic signals" data-te="ట్రాఫిక్ సిగ్నల్స్ పాటించండి">Obey traffic signals</h4></div>
             <div class="rule-card"><i class="fa-solid fa-phone-slash"></i><h4 class="lang" data-en="No mobile phones while driving" data-te="డ్రైవింగ్ చేస్తున్నప్పుడు మొబైల్ వాడకండి">No mobile phones while driving</h4></div>
             <div class="rule-card"><i class="fa-solid fa-car-rear"></i><h4 class="lang" data-en="Maintain a safe distance" data-te="సురక్షితమైన దూరం పాటించండి">Maintain a safe distance</h4></div>
+        </div>
+    </section>
+
+    <section class="section-container" style="padding-top: 0; padding-bottom: 20px;">
+        <div class="insta-banner">
+            <i class="fa-brands fa-instagram" style="font-size: 3.5rem; margin-bottom: 15px;"></i>
+            <h3 style="font-size: 2.2rem; font-family: 'Poppins', sans-serif; margin-bottom: 10px;" class="lang" data-en="Join Our Instagram Family!" data-te="మా ఇన్‌స్టాగ్రామ్ కుటుంబంలో చేరండి!">Join Our Instagram Family!</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 20px;" class="lang" data-en="Follow @madhucardrivingschool_official for daily driving tips, student success stories, and live updates." data-te="రోజువారీ డ్రైవింగ్ చిట్కాలు, విద్యార్థుల విజయ కథలు మరియు ప్రత్యక్ష నవీకరణల కోసం @madhucardrivingschool_official ని అనుసరించండి.">Follow @madhucardrivingschool_official for daily driving tips, student success stories, and live updates.</p>
+            <a href="https://www.instagram.com/madhucardrivingschool_official?utm_source=qr&igsh=NWFnZWp6NW1yMHMy" target="_blank" class="insta-banner-btn">
+                <span class="lang" data-en="Follow Us" data-te="మమ్మల్ని అనుసరించండి">Follow Us</span> <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
+            </a>
         </div>
     </section>
 
