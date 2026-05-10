@@ -20,7 +20,7 @@
             --text-color: #333;
             --whatsapp-green: #25D366;
             --card-bg: #ffffff;
-            --accent-yellow: #fbbc05; /* Yellow for arrows */
+            --accent-yellow: #fbbc05; /* Yellow for arrows and badges */
         }
 
         html {
@@ -132,6 +132,25 @@
             border: 5px solid white;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             margin-bottom: 15px;
+        }
+
+        .student-count-badge {
+            display: inline-block;
+            background-color: var(--accent-yellow);
+            color: var(--secondary-color);
+            padding: 5px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .car-pics {
@@ -264,12 +283,11 @@
             flex-direction: column;
         }
 
-        /* Image Zoom Cursor */
         .gallery-item img {
             width: 100%;
             height: 280px;
             object-fit: cover;
-            cursor: zoom-in; /* Shows magnifying glass on hover */
+            cursor: zoom-in; 
             transition: transform 0.3s;
         }
         
@@ -283,7 +301,7 @@
             align-items: center;
             gap: 15px;
             background: white;
-            z-index: 2; /* Keeps caption above hovered image */
+            z-index: 2; 
             position: relative;
         }
 
@@ -318,7 +336,7 @@
             line-height: 1.4;
         }
 
-        /* Lightbox (Image Modal) Styles */
+        /* Lightbox Styles */
         .lightbox {
             display: none; 
             position: fixed; 
@@ -484,11 +502,17 @@
                 <img src="Instructor.jpeg" alt="Instructor Y. Madhu" class="instructor-photo">
             </div>
 
-            <div style="margin-bottom: 25px; font-weight: 600; font-size: 1.1rem;">
+            <div style="margin-bottom: 10px; font-weight: 600; font-size: 1.1rem;">
                 <i class="fa-solid fa-user-tie" style="color: #a8dadc; margin-right: 5px;"></i>
                 <span class="lang" data-en="Instructor: Y. Madhu" data-te="ఇన్‌స్ట్రక్టర్: వై. మధు">Instructor: Y. Madhu</span>
                 (<span id="exp-years"></span><span class="lang" data-en="+ Years Experience" data-te="+ సంవత్సరాల అనుభవం">+ Years Experience</span>)
             </div>
+
+            <div class="student-count-badge">
+                <i class="fa-solid fa-users" style="margin-right: 5px;"></i>
+                <span class="lang" data-en="8000+ Students Trained" data-te="8000+ విద్యార్థులకు శిక్షణ ఇచ్చారు">8000+ Students Trained</span>
+            </div>
+            <br>
 
             <a href="tel:+919848907545" class="contact-btn">
                 <i class="fa-solid fa-phone-volume"></i> 9848907545
@@ -641,7 +665,7 @@
     </section>
 
     <div id="imageLightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="close-lightbox">&times;</span>
+        <span class="close-lightbox">×</span>
         <img class="lightbox-content" id="expandedImg">
     </div>
 
@@ -652,7 +676,6 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
-        // Language Toggle Logic
         let currentLang = 'en'; 
         function toggleLanguage() {
             const elements = document.querySelectorAll('.lang');
@@ -668,13 +691,11 @@
             }
         }
         
-        // Experience Logic
         document.addEventListener("DOMContentLoaded", function() {
             const experienceYears = new Date().getFullYear() - 2000;
             document.getElementById('exp-years').innerText = experienceYears;
         });
 
-        // Swiper Carousel Initialization
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1.2,       
             centeredSlides: true,     
@@ -682,7 +703,7 @@
             loop: true,               
             speed: 600,               
             autoplay: {
-                delay: 3000,          // Auto-scrolls EVERY 3 SECONDS
+                delay: 3000, 
                 disableOnInteraction: false,
             },
             navigation: {
@@ -701,7 +722,6 @@
             }
         });
 
-        // Lightbox Functions for Zooming Images
         function openLightbox(src) {
             document.getElementById('imageLightbox').style.display = "block";
             document.getElementById('expandedImg').src = src;
