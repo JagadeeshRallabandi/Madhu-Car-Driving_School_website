@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+Telugu:wght@400;600&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         /* Base Styles */
         :root {
@@ -17,6 +19,8 @@
             --bg-color: #f8f9fa;
             --text-color: #333;
             --whatsapp-green: #25D366;
+            --card-bg: #ffffff;
+            --accent-yellow: #fbbc05; /* Yellow for arrows */
         }
 
         html {
@@ -119,6 +123,17 @@
             margin-bottom: 15px;
         }
 
+        /* Instructor Photo Styles */
+        .instructor-photo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+        }
+
         .car-pics {
             display: flex;
             justify-content: center;
@@ -200,7 +215,7 @@
         }
 
         .rule-card {
-            background: white;
+            background: var(--card-bg);
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -220,6 +235,153 @@
 
         .rule-card h4 {
             color: var(--secondary-color);
+        }
+
+        /* --- CAROUSEL GALLERY STYLES --- */
+        .swiper {
+            width: 100%;
+            padding-bottom: 50px; 
+        }
+
+        .swiper-slide {
+            opacity: 0.3; 
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            transform: scale(0.9); 
+        }
+
+        .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Image Zoom Cursor */
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            cursor: zoom-in; /* Shows magnifying glass on hover */
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption-wrapper {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            z-index: 2; /* Keeps caption above hovered image */
+            position: relative;
+        }
+
+        .caption-icon-box {
+            background-color: #5b3a6b; 
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .caption-icon-box i {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .caption-icon-box span {
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .caption-text {
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Lightbox (Image Modal) Styles */
+        .lightbox {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            padding-top: 50px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s;
+            object-fit: contain;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-lightbox:hover,
+        .close-lightbox:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes zoomIn {
+            from {transform:scale(0.8); opacity: 0;}
+            to {transform:scale(1); opacity: 1;}
+        }
+
+        /* Swiper Navigation */
+        .swiper-button-next,
+        .swiper-button-prev {
+            background-color: var(--accent-yellow);
+            color: black !important;
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 18px !important;
+            font-weight: bold;
         }
 
         /* Location Wrapper */
@@ -280,6 +442,8 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .logo-text { font-size: 1.1rem; }
+            .gallery-item img { height: 200px; }
+            .close-lightbox { right: 15px; }
         }
     </style>
 </head>
@@ -316,6 +480,10 @@
                 </p>
             </a>
 
+            <div>
+                <img src="Instructor.jpeg" alt="Instructor Y. Madhu" class="instructor-photo">
+            </div>
+
             <div style="margin-bottom: 25px; font-weight: 600; font-size: 1.1rem;">
                 <i class="fa-solid fa-user-tie" style="color: #a8dadc; margin-right: 5px;"></i>
                 <span class="lang" data-en="Instructor: Y. Madhu" data-te="ఇన్‌స్ట్రక్టర్: వై. మధు">Instructor: Y. Madhu</span>
@@ -325,6 +493,122 @@
             <a href="tel:+919848907545" class="contact-btn">
                 <i class="fa-solid fa-phone-volume"></i> 9848907545
             </a>
+        </div>
+    </section>
+
+    <section class="section-container" style="background-color: #f1f3f5; max-width: 100%; overflow: hidden;">
+        <div style="max-width: 1200px; margin: auto;">
+            <h2 class="section-title lang" data-en="Our Training Gallery" data-te="మా శిక్షణ గ్యాలరీ">Our Training Gallery</h2>
+
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="IAS_1.jpeg" alt="IAS Training" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#e63946;"><i class="fa-solid fa-star"></i><span>VIP</span></div>
+                                <div class="caption-text lang" data-en="Exclusive driving modules for IAS officers." data-te="IAS అధికారుల కోసం ప్రత్యేక డ్రైవింగ్ మాడ్యూల్స్.">Exclusive driving modules for IAS officers.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Student_1.jpeg" alt="Student Training 1" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#5b3a6b;"><i class="fa-solid fa-steering-wheel"></i><span>Learn</span></div>
+                                <div class="caption-text lang" data-en="Personalized training for professionals." data-te="నిపుణుల కోసం వ్యక్తిగతీకరించిన శిక్షణ.">Personalized training for professionals.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Student_2.jpeg" alt="Student Training 2" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#5b3a6b;"><i class="fa-solid fa-check"></i><span>Focus</span></div>
+                                <div class="caption-text lang" data-en="Building confidence in new learners." data-te="కొత్తగా నేర్చుకునే వారిలో ఆత్మవిశ్వాసాన్ని పెంపొందించడం.">Building confidence in new learners.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Student_3.jpeg" alt="Student Training 3" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#5b3a6b;"><i class="fa-solid fa-shield-halved"></i><span>Safe</span></div>
+                                <div class="caption-text lang" data-en="Focus on defensive driving techniques." data-te="డిఫెన్సివ్ డ్రైవింగ్ పద్ధతులపై దృష్టి పెట్టండి.">Focus on defensive driving techniques.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Student_4.jpeg" alt="Student Training 4" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#5b3a6b;"><i class="fa-solid fa-road"></i><span>Drive</span></div>
+                                <div class="caption-text lang" data-en="Comprehensive theory and practical sessions." data-te="సమగ్ర సిద్ధాంతం మరియు ఆచరణాత్మక సెషన్లు.">Comprehensive theory and practical sessions.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Police_1.jpeg" alt="Police Training 1" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#1d3557;"><i class="fa-solid fa-building-shield"></i><span>Police</span></div>
+                                <div class="caption-text lang" data-en="Advanced driving skills for police personnel." data-te="పోలీసు సిబ్బందికి అధునాతన డ్రైవింగ్ నైపుణ్యాలు.">Advanced driving skills for police personnel.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Police_2.jpeg" alt="Police Training 2" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#1d3557;"><i class="fa-solid fa-bolt"></i><span>Tactic</span></div>
+                                <div class="caption-text lang" data-en="Tactical driving and maneuverability." data-te="టాక్టికల్ డ్రైవింగ్ మరియు యుక్తి.">Tactical driving and maneuverability.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Police_3.jpeg" alt="Police Training 3" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#1d3557;"><i class="fa-solid fa-gauge-high"></i><span>Speed</span></div>
+                                <div class="caption-text lang" data-en="High-speed control and safety protocols." data-te="అతి వేగ నియంత్రణ మరియు భద్రతా ప్రోటోకాల్‌లు.">High-speed control and safety protocols.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Police_4.jpeg" alt="Police Training 4" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#1d3557;"><i class="fa-solid fa-user-ninja"></i><span>Pro</span></div>
+                                <div class="caption-text lang" data-en="Specialized training for department drivers." data-te="డిపార్ట్‌మెంట్ డ్రైవర్ల కోసం ప్రత్యేక శిక్షణ.">Specialized training for department drivers.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Police_5.jpeg" alt="Police Training 5" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#1d3557;"><i class="fa-solid fa-truck-medical"></i><span>Alert</span></div>
+                                <div class="caption-text lang" data-en="Emergency response driving techniques." data-te="ఎమర్జెన్సీ రెస్పాన్స్ డ్రైవింగ్ పద్ధతులు.">Emergency response driving techniques.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="gallery-item">
+                            <img src="Police_6.jpeg" alt="Police Training 6" onclick="openLightbox(this.src)">
+                            <div class="gallery-caption-wrapper">
+                                <div class="caption-icon-box" style="background:#1d3557;"><i class="fa-solid fa-lock"></i><span>Secure</span></div>
+                                <div class="caption-text lang" data-en="Ensuring safety during police operations." data-te="పోలీసు కార్యకలాపాల సమయంలో భద్రతను నిర్ధారించడం.">Ensuring safety during police operations.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
         </div>
     </section>
 
@@ -340,7 +624,7 @@
         </div>
     </section>
 
-    <section id="map-section" class="section-container" style="background-color: #f1f3f5; max-width: 100%;">
+    <section id="map-section" class="section-container" style="background-color: var(--bg-color); max-width: 100%;">
         <h2 class="section-title lang" data-en="Our Location" data-te="మా చిరునామా">Our Location</h2>
         <div class="section-container" style="padding-top: 0;">
             <div class="location-wrapper">
@@ -356,11 +640,19 @@
         </div>
     </section>
 
+    <div id="imageLightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="expandedImg">
+    </div>
+
     <a href="https://wa.me/919848907545" class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script>
+        // Language Toggle Logic
         let currentLang = 'en'; 
         function toggleLanguage() {
             const elements = document.querySelectorAll('.lang');
@@ -375,10 +667,49 @@
                 currentLang = 'en';
             }
         }
+        
+        // Experience Logic
         document.addEventListener("DOMContentLoaded", function() {
             const experienceYears = new Date().getFullYear() - 2000;
             document.getElementById('exp-years').innerText = experienceYears;
         });
+
+        // Swiper Carousel Initialization
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1.2,       
+            centeredSlides: true,     
+            spaceBetween: 20,         
+            loop: true,               
+            speed: 600,               
+            autoplay: {
+                delay: 3000,          // Auto-scrolls EVERY 3 SECONDS
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2.2,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 2.8,
+                    spaceBetween: 40,
+                }
+            }
+        });
+
+        // Lightbox Functions for Zooming Images
+        function openLightbox(src) {
+            document.getElementById('imageLightbox').style.display = "block";
+            document.getElementById('expandedImg').src = src;
+        }
+
+        function closeLightbox() {
+            document.getElementById('imageLightbox').style.display = "none";
+        }
     </script>
 </body>
 </html>
